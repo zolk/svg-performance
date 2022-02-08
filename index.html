@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG Performance Test</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+      th,
+      td {
+        padding: 0.5rem;
+      }
+      table img {
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="star.svg" />
+
+    <h2>
+      100 SVG files rendered using a variety of methods to test relative
+      performance.
+    </h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Test</th>
+          <th>Chrome Results</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><a href="individual.html">Inline SVGs</a></th>
+          <td><img src="results/individual.png" /></td>
+        </tr>
+        <tr>
+          <th><a href="sprite.html">SVG Sprite</a></th>
+          <td><img src="results/sprite.png" /></td>
+        </tr>
+        <tr>
+          <th><a href="string.html">Rendered from JS String</a></th>
+          <td><img src="results/string.png" /></td>
+        </tr>
+        <tr>
+          <th><a href="fetch.html">Rendered from Fetch</a></th>
+          <td><img src="results/fetch.png" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      <i
+        >Performance results taken on Chrome v98.0.4758.80 (arm64) on an Apple
+        M1 Pro.</i
+      >
+    </p>
+  </body>
+</html>

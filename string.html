@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG Performance: JS String</title>
+    <script>
+      const star =
+        '<svg\n  class="star"\n  xmlns="http://www.w3.org/2000/svg"\n  width="24"\n  height="24"\n  viewBox="0 0 24 24"\n  stroke="#000000"\n  fill="none"\n>\n  <polygon\n    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"\n    stroke-linecap="round"\n    stroke-linejoin="round"\n    stroke-width="2"\n  ></polygon>\n</svg>\n';
+
+      document.addEventListener('DOMContentLoaded', function (event) {
+        const svgWrap = document.querySelector('.svgs');
+
+        (async function () {
+          for (let step = 0; step < 100; step++) {
+            svgWrap.insertAdjacentHTML('beforeend', star);
+          }
+        })();
+      });
+    </script>
+  </head>
+  <body>
+    <div class="svgs"></div>
+  </body>
+</html>

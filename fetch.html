@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG Performance: Fetch</title>
+    <script>
+      const iconStore = new Map();
+
+      const requestIcon = async (icon) => {
+        if (iconStore.has(icon)) {
+          return iconStore.get(icon);
+        }
+
+        const request = fetch(icon).then(async (response) => {
+          return {
+            ok: response.ok,
+            status: response.status,
+            html: await response.text(),
+          };
+        });
+
+        iconStore.set(icon, request);
+        return request;
+      };
+
+      document.addEventListener('DOMContentLoaded', function (event) {
+        const parser = new DOMParser();
+        const svgWrap = document.querySelector('.svgs');
+
+        (async function () {
+          for (let step = 0; step < 100; step++) {
+            const svgResponse = await requestIcon('/star.8aaea706.svg');
+            const doc = parser.parseFromString(svgResponse.html, 'text/html');
+            const svgEl = doc.body.querySelector('svg');
+            svgWrap.appendChild(svgEl);
+          }
+        })();
+      });
+    </script>
+  </head>
+  <body>
+    <div class="svgs"></div>
+  </body>
+</html>
